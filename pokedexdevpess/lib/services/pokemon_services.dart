@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../models/pokemon_basic.dart';
 import '../models/pokemon_detail.dart';
 import '../models/pokemon_region.dart'; // Importa el modelo de la región
+import 'package:audioplayers/audioplayers.dart';
 
 class PokemonService {
   final String _baseUrl = 'https://pokeapi.co/api/v2';
@@ -44,5 +45,25 @@ class PokemonService {
     } else {
       throw Exception('No se pudo cargar las regiones');
     }
+  }
+}
+
+
+
+class AudioManager {
+  static final AudioManager _instance = AudioManager._internal();
+  factory AudioManager() => _instance;
+
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  AudioManager._internal();
+
+  Future<void> playLoopedMusic() async {
+    await _audioPlayer.setReleaseMode(ReleaseMode.loop);
+    await _audioPlayer.play(AssetSource('Song.mp3'));
+  }
+
+  Future<void> stopMusic() async {
+    await _audioPlayer.stop();
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:pokedexdevpess/services/pokemon_services.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -17,6 +18,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
+    AudioManager().playLoopedMusic();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,

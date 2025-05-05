@@ -71,12 +71,6 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
                 leading: Image.network(imageUrl),
                 title: Text(pokemon.name.toUpperCase()),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PokemonDetailScreen(pokemon: pokemon),
-                    ),
-                  );
                 },
               );
             },
