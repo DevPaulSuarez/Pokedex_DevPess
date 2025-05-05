@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'services/pokemon_services.dart';
 import 'models/pokemon_basic.dart';
 import 'screens/pokemon_detail_screen.dart';
-
+import 'screens/welcome_screen.dart'; //  Importamos nueva pantalla
+import 'screens/regiones_screen.dart'; // importa tu pantalla de regiones
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Pokédex', home: const PokemonListScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Pokédex',
+      initialRoute: '/', // 👈 Ruta inicial
+      routes: {
+        '/': (context) => const WelcomeScreen(),
+        '/pokedex': (context) => const PokemonListScreen(),
+        '/regions': (context) => const RegionsScreen(),
+      },
+    );
   }
 }
 
@@ -64,8 +74,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (context) => PokemonDetailScreen(pokemon: pokemon),
+                      builder: (context) => PokemonDetailScreen(pokemon: pokemon),
                     ),
                   );
                 },
